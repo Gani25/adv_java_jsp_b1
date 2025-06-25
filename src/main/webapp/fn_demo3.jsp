@@ -1,3 +1,4 @@
+<%@page import="com.sprk.util.FuncUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,22 +9,13 @@
 </head>
 <body>
 
-	<%!boolean checkPrime(int num) {
 
-		for (int i = 2; i <= num / 2; i++) {
-			if (num % i == 0) {
-				// not prime
-				return false;
-			}
-		}
-		return true;
-	}%>
 
 	<h1>---Prime Number Series---</h1>
 	<form action="">
 
 		<label for="num">Number</label> <input type="text" id="num"
-			name="num1"> <br>
+			name="num1" value="<%= request.getParameter("num1") == null?"":request.getParameter("num1") %>"> <br>
 		<br> <input type="submit" value="Prime Numbers">
 	</form>
 
@@ -45,7 +37,7 @@
 
 		out.print("<p>Series of Prime Number from 1 to " + num + "</p>");
 		for (int i = 1; i <= num; i++) {
-			if (checkPrime(i)) {
+			if (FuncUtil.checkPrime(i)) {
 		out.print("<span>" + i + " </span>");
 			}
 		}
