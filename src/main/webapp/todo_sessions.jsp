@@ -37,6 +37,7 @@
 		}
 	%>
 	
+	
 	<ol>
 	<%
 	
@@ -48,6 +49,11 @@
 		
 		// save this list into session
 		session.setAttribute("tasks", allTasks);
+			}
+			String delete = request.getParameter("delete");
+			
+			if(delete != null && !delete.isBlank()){
+				allTasks.remove(delete);
 			}
 		String task = request.getParameter("task");
 		if (task != null && !task.isBlank()) {
@@ -65,7 +71,8 @@
 		if (!allTasks.isEmpty()) {
 			// Loop
 			for (String t : allTasks) {
-		out.print("<li>" + t + "</li>");
+		out.print("<li>" + t +"&nbsp;&nbsp;<a href=\"todo_sessions.jsp?delete="+t+"\""+">Delete</a>"+ "</li>");
+	
 			}
 		}
 	%>
