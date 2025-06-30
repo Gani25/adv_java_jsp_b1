@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,6 +22,7 @@
 			if (ck.getName().equals("favSkill")) {
 		// If matched then change the pref to cookie value
 		prefferedSkill = ck.getValue();
+		prefferedSkill = URLDecoder.decode(prefferedSkill);
 
 		break;
 			}
@@ -34,12 +36,20 @@
 	<hr>
 	<h3>Show Jobs of <%=prefferedSkill %></h3>
 	<hr>
+	
+	<%
+		if(prefferedSkill.equalsIgnoreCase("Java")){
+			out.print("<a>Java Job 1</a><br><a>Java Job 2</a><br><a>Java Job 3</a><br>");
+		}
+		else if(prefferedSkill.equalsIgnoreCase("Gen Ai")){
+			out.print("<a>Gen AI Job 1</a><br><a>Gen AI Job 2</a><br><a>Gen AI Job 3</a><br>");
+		}
+		else if(prefferedSkill.equalsIgnoreCase("Data Analysis")){
+			out.print("<a>Power BI Job</a><br><a>SQL Job</a><br><a>Data Analyst Job</a><br>");
+		}
+	%>
 
-	<ol>
-		<li><%=prefferedSkill %> Job1</li>
-		<li><%=prefferedSkill %> Job2</li>
-		<li><%=prefferedSkill %> Job3</li>
-	</ol>
+
 	<hr>
 
 	<a href="cookie-form.jsp">Modify Job Preferences</a>

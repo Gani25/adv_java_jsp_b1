@@ -1,3 +1,5 @@
+<%@page import="java.net.URLDecoder"%>
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +15,9 @@
 
 	// Here we will set the skills into cookies
 	
+	// Encode 
+	prefferedSkills = URLEncoder.encode(prefferedSkills);
+	
 	// step 1: create a cookie and named your coookie
 	Cookie cookie = new Cookie("favSkill", prefferedSkills);
 	
@@ -25,7 +30,7 @@
 	response.addCookie(cookie);
 %>
 
-<h1>Your Prefence Have Been Set To <%=prefferedSkills %></h1>
+<h1>Your Prefence Have Been Set To <%=URLDecoder.decode( prefferedSkills) %></h1>
 
 <a href="job-portal.jsp">Explore Jobs</a>
 
